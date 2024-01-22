@@ -1,7 +1,9 @@
 # chronology2019
 
-- Embedded link:
-  <iframe width="100%" height="640" style="padding: 1px;" src="https://georgeeliotarchive.org/chronology/chronology-tree/index.html"></iframe>
+# this is the revised version:
+
+- Fixed auto centrilization issue
+- Added a button in case auto centrialization not working accidently
 
 - New link:
 
