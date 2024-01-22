@@ -350,6 +350,9 @@ function startButton() {
   // Set properties of the button, like text content
   button.innerHTML = "Start";
   // Inline CSS styles
+  button.style.position = "fixed"; // Fixed position
+  button.style.top = "2px"; // Top of the viewport
+  button.style.left = "10px"; // Left of the viewport
   button.style.backgroundColor = "#4CAF50"; // Green background
   button.style.color = "white"; // White text
   button.style.padding = "4px 8px"; // Padding
@@ -360,7 +363,7 @@ function startButton() {
   button.style.margin = "4px 2px"; // Margin
   button.style.cursor = "pointer"; // Pointer cursor on hover
   button.style.border = "none"; // No border
-  button.style.borderRadius = "2px"; // Rounded corners
+  button.style.borderRadius = "4px"; // Rounded corners
 
   // Optional: Add an event listener for the click event
   button.addEventListener("click", function () {
