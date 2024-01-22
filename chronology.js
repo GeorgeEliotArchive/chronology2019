@@ -348,28 +348,11 @@ function startButton() {
   var button = document.createElement("button");
 
   // Set properties of the button, like text content
-  button.innerHTML = "Start";
+  button.innerHTML = "Scroll To Start";
   // Inline CSS styles
-  button.style.position = "fixed"; // Fixed position
-  button.style.top = "2px"; // Top of the viewport
-  button.style.left = "10px"; // Left of the viewport
-
   button.style.display = "inline-block"; // Inline-block display
   button.setAttribute("type", "button");
   button.setAttribute("class", "btn btn-outline-danger btn-sm");
-
-  // // button.style.backgroundColor = "#4CAF50"; // Green background
-  // button.style.backgroundColor = "#9C2828"; // Red background
-  // button.style.color = "white"; // White text
-  // button.style.padding = "4px 8px"; // Padding
-  // button.style.textAlign = "center"; // Center-aligned text
-  // button.style.textDecoration = "none"; // No text decoration
-  // button.style.display = "inline-block"; // Inline-block display
-  // button.style.fontSize = "16px"; // Font size
-  // button.style.margin = "4px 2px"; // Margin
-  // button.style.cursor = "pointer"; // Pointer cursor on hover
-  // button.style.border = "none"; // No border
-  // button.style.borderRadius = "4px"; // Rounded corners
 
   // Optional: Add an event listener for the click event
   button.addEventListener("click", function () {
@@ -378,7 +361,19 @@ function startButton() {
 
   // Find the container where the button will be added
   var container = document.getElementById("buttonContainer");
+  container.style.position = "fixed"; // Fixed position
+  container.style.top = "2px"; // Top of the viewport
+  container.style.left = "10px"; // Left of the viewport
 
   // Append the button to the container
   container.appendChild(button);
+
+  // Create a span element for the extra text
+  // var extraText = document.createElement("span");
+  // extraText.innerHTML = "Scroll to the middle"; // Add your desired text here
+  // extraText.style.marginLeft = "10px"; // Optional: Style for the extra text
+  // extraText.style.color = "red"; // Optional: Style for the extra text
+
+  // // Append the extra text to the container
+  // container.appendChild(extraText);
 }
