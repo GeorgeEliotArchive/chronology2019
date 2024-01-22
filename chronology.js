@@ -88,9 +88,7 @@ const svg = d3
   //.append("svg")
   .attr("width", width + margin.right + margin.left)
   .attr("height", height + margin.top + margin.bottom);
-const g = svg
-  .append("g")
-  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+const g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 let i = 0;
 let duration = 750;
@@ -131,6 +129,8 @@ parseData.then(function () {
   // });
 
   scrollToElementVerticalMiddle("chronology");
+  // Call the function to add the button when the script loads
+  startButton();
 });
 
 function update(source) {
@@ -341,4 +341,35 @@ function scrollToElementVerticalMiddle(elementId) {
     // Scroll to the calculated position
     window.scrollTo({ top: scrollToPosition, behavior: "smooth" });
   }
+}
+
+function startButton() {
+  // Create a new button element
+  var button = document.createElement("button");
+
+  // Set properties of the button, like text content
+  button.innerHTML = "Start";
+  // Inline CSS styles
+  button.style.backgroundColor = "#4CAF50"; // Green background
+  button.style.color = "white"; // White text
+  button.style.padding = "4px 8px"; // Padding
+  button.style.textAlign = "center"; // Center-aligned text
+  button.style.textDecoration = "none"; // No text decoration
+  button.style.display = "inline-block"; // Inline-block display
+  button.style.fontSize = "16px"; // Font size
+  button.style.margin = "4px 2px"; // Margin
+  button.style.cursor = "pointer"; // Pointer cursor on hover
+  button.style.border = "none"; // No border
+  button.style.borderRadius = "2px"; // Rounded corners
+
+  // Optional: Add an event listener for the click event
+  button.addEventListener("click", function () {
+    scrollToElementVerticalMiddle("chronology");
+  });
+
+  // Find the container where the button will be added
+  var container = document.getElementById("buttonContainer");
+
+  // Append the button to the container
+  container.appendChild(button);
 }
