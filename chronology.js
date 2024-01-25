@@ -128,7 +128,8 @@ parseData.then(function () {
   //   block: "center",
   // });
 
-  scrollToElementVerticalMiddle("chronology");
+  // scrollToElementVerticalMiddle("chronology");
+  scrollToElementVerticalAndHorizontal("chronology");
   // Call the function to add the button when the script loads
   startButton();
 });
@@ -229,14 +230,14 @@ function update(source) {
   });
 }
 function getChildren(i, arr) {
-  var childs = [];
+  let childs = [];
   if (arr[i + 1 + i]) {
     childs[0] = { name: arr[i * 2 + 1], children: [] };
     if (arr[i + i + 2]) {
       childs[1] = { name: arr[i * 2 + 2], children: [] };
     }
   }
-  var nextin = i * 2 + 1;
+  let nextin = i * 2 + 1;
   if (arr[nextin * 2 + 1]) {
     childs[0].children = getChildren(nextin, arr);
     childs[0]._children = null;
@@ -248,7 +249,7 @@ function getChildren(i, arr) {
   return childs;
 }
 function diagonal(s, d) {
-  path = `M ${s.y} ${s.x}
+  let path = `M ${s.y} ${s.x}
             C ${(s.y + d.y) / 2} ${s.x},
               ${(s.y + d.y) / 2} ${d.x},
               ${d.y} ${d.x}`;
@@ -308,7 +309,7 @@ function wrap(text, width) {
   });
 }
 
-var months = [
+const months = [
   "January",
   "February",
   "March",
@@ -326,29 +327,48 @@ function getMonthString(month) {
   return months[month - 1];
 }
 
-function scrollToElementVerticalMiddle(elementId) {
+// function scrollToElementVerticalMiddle(elementId) {
+//   const element = document.getElementById(elementId);
+//   if (element) {
+//     // Get the bounding rectangle of the element
+//     const elementRect = element.getBoundingClientRect();
+//     // Calculate its position relative to the document
+//     const elementTopRelativeToDocument = elementRect.top + window.pageYOffset;
+//     // Calculate the vertical middle of the element
+//     const elementMiddle = elementTopRelativeToDocument + elementRect.height / 2;
+//     // Calculate the position to scroll to (element's middle - half of viewport height)
+//     const scrollToPosition = elementMiddle - window.innerHeight / 2;
+
+//     // Scroll to the calculated position
+//     window.scrollTo({ top: scrollToPosition, behavior: "smooth" });
+//   }
+// }
+function scrollToElementVerticalAndHorizontal(elementId) {
   const element = document.getElementById(elementId);
   if (element) {
     // Get the bounding rectangle of the element
     const elementRect = element.getBoundingClientRect();
     // Calculate its position relative to the document
     const elementTopRelativeToDocument = elementRect.top + window.pageYOffset;
+    const elementLeftRelativeToDocument = elementRect.left + window.pageXOffset;
     // Calculate the vertical middle of the element
-    const elementMiddle = elementTopRelativeToDocument + elementRect.height / 2;
-    // Calculate the position to scroll to (element's middle - half of viewport height)
-    const scrollToPosition = elementMiddle - window.innerHeight / 2;
-
+    const elementVerticalMiddle = elementTopRelativeToDocument + elementRect.height / 2;
+    // Calculate the position to vertically scroll to (element's middle - half of viewport height)
+    const scrollToVerticalPosition = elementVerticalMiddle - window.innerHeight / 2;
+    // Calculate the position to horizontally scroll to (element's leftmost position)
+    const scrollToHorizontalPosition = elementLeftRelativeToDocument;
+    console.log(scrollToHorizontalPosition);
     // Scroll to the calculated position
-    window.scrollTo({ top: scrollToPosition, behavior: "smooth" });
+    window.scrollTo({ top: scrollToVerticalPosition, left: scrollToHorizontalPosition, behavior: "smooth" });
   }
 }
 
 function startButton() {
   // Create a new button element
-  var button = document.createElement("button");
+  let button = document.createElement("button");
 
   // Set properties of the button, like text content
-  button.innerHTML = "Scroll To Start";
+  button.innerHTML = "Scroll To Orginal Position";
   // Inline CSS styles
   button.style.display = "inline-block"; // Inline-block display
   button.setAttribute("type", "button");
@@ -356,11 +376,12 @@ function startButton() {
 
   // Optional: Add an event listener for the click event
   button.addEventListener("click", function () {
-    scrollToElementVerticalMiddle("chronology");
+    // scrollToElementVerticalMiddle("chronology");
+    scrollToElementVerticalAndHorizontal("chronology");
   });
 
   // Find the container where the button will be added
-  var container = document.getElementById("buttonContainer");
+  let container = document.getElementById("buttonContainer");
   container.style.position = "fixed"; // Fixed position
   container.style.top = "2px"; // Top of the viewport
   container.style.left = "10px"; // Left of the viewport
