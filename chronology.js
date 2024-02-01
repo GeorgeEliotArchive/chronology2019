@@ -368,7 +368,7 @@ function startButton() {
   let button = document.createElement("button");
 
   // Set properties of the button, like text content
-  button.innerHTML = "Scroll To Orginal Position";
+  button.innerHTML = "Move To Orginal Position";
   // Inline CSS styles
   button.style.display = "inline-block"; // Inline-block display
   button.setAttribute("type", "button");
